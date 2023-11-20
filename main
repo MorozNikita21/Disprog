@@ -1,0 +1,42 @@
+
+package com.company;
+
+
+import java.lang.reflect.Array;
+import java.util.Arrays;
+import java.util.Scanner;
+
+public class Main {
+
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+        int n = sc.nextInt();
+
+        int[][] costMatrix = new int[n][n];
+        int[][] costMatrix1 = new int[n][n];
+        for (int i = 0; i < n; i++) {
+            for (int j = 0; j < n; j++) {
+                costMatrix[i][j] = sc.nextInt();
+                costMatrix1[i][j]=costMatrix[i][j];
+            }
+        }
+
+
+        AssignmentProblem assignmentProblem = new AssignmentProblem(costMatrix1);
+        int[][] assignment = assignmentProblem.findOptimalAssignment();
+
+
+        int sum = 0;
+        if (assignment.length > 0) {
+            for (int i = 0; i < assignment.length; i++) {
+                System.out.print("Col" + (assignment[i][0] + 1) + " => Row" + (assignment[i][1] + 1) + " (" + costMatrix[assignment[i][0]][assignment[i][1]] + ")");
+                System.out.println();
+                sum += costMatrix[assignment[i][0]][assignment[i][1]];
+            }
+            System.out.println(sum);
+        } else {
+            System.out.println("no assignment found!");
+        }
+
+    }
+}
